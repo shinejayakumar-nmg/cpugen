@@ -43,16 +43,18 @@ parser.add_argument('-dj', '--dumpjson', metavar='', type=str, help='export to j
 
 args = parser.parse_args()
 
-# if args.help:
-#     print(usage)
-#     sys.exit(0)
-
+# if input filename was specified
 if args.file:
     try:
         with open(args.file) as fh:
+            # read all the cpu names into a list
             cpus = fh.readlines()
+
+            # will hold list of dictionaries
             cpu_info = []
 
+            # generate list of dictionaries
+            # with cpu's name and generation
             for cpu in cpus:
                 cpu_name = cpu.replace('\n', '')    
                 gen = get_cpu_gen(cpu_name)
@@ -63,10 +65,12 @@ if args.file:
                     }
                 )
             
+            # if jsondump outfile was specified
             if args.dumpjson:
                 outfile = args.dumpjson
                 with open(outfile, 'w') as outfh:
                     json.dump(cpu_info, outfh)
+            # display to console if outfile is not specified
             else:
                 for cpu in cpu_info:
                     print(f'cpu: {cpu["cpu"]} - generation: {cpu["generation"]}')
