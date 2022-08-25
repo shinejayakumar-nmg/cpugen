@@ -39,14 +39,14 @@ parser = argparse.ArgumentParser(
 parser.add_argument('-f','--file', metavar='', type=str, help='file with line separated list of cpu namese')
 parser.add_argument('-n','--name', metavar='', type=str, help='cpu name')
 parser.add_argument('-dj', '--dumpjson', metavar='', type=str, help='export to json')
-parser.add_argument('-h', '--help', metavar='', type=str, help='help')
+# parser.add_argument('-h', '--help', metavar='', type=str, help='help')
 
 args = parser.parse_args()
 
-if args.help:
-    print(usage)
-    sys.exit(0)
-    
+# if args.help:
+#     print(usage)
+#     sys.exit(0)
+
 if args.file:
     try:
         with open(args.file) as fh:
